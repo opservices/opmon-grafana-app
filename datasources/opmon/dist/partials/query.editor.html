@@ -1,0 +1,119 @@
+
+
+<query-editor-row query-ctrl="ctrl" can-collapse="false">
+    <div class="gf-form-inline">
+    <div class="gf-form max-width-20">
+      <label class="gf-form-label width-7">Query Mode</label>
+      <div class="gf-form-select-wrapper max-width-20">
+        <select class="gf-form-input"
+              ng-change="ctrl.switchValue('mode',ctrl.target.mode)"
+              ng-model="ctrl.target.mode"
+              ng-options="m.mode as m.text for m in ctrl.editorModes">
+        </select>
+      </div>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.AVAIL">
+      <label class="gf-form-label query-keyword">Object Type:</label>
+      <select class="gf-form-input" ng-model="ctrl.target.objecttype" ng-options="f as f for f in ['Host', 'Service', 'Hostgroup', 'Servicegroup', 'Service catalog']" ng-change="ctrl.switchValue('objecttype',ctrl.target.objecttype)"></select>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.CP">
+      <label class="gf-form-label query-keyword">Object Type:</label>
+      <select class="gf-form-input" ng-model="ctrl.target.objecttype" ng-options="f as f for f in ['Service', 'Hostgroup', 'Servicegroup']" ng-change="ctrl.switchValue('objecttype',ctrl.target.objecttype)"></select>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.SYSTEM">
+      <label class="gf-form-label query-keyword">Object Type:</label>
+      <select class="gf-form-input" ng-model="ctrl.target.objecttype" ng-options="f as f for f in ['Host', 'Service', 'Hostgroup', 'Servicegroup', 'System']" ng-change="ctrl.switchValue('objecttype',ctrl.target.objecttype)"></select>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.STATUS">
+      <label class="gf-form-label query-keyword">Object Type:</label>
+      <select class="gf-form-input" ng-model="ctrl.target.objecttype" ng-options="f as f for f in ['Host', 'Service', 'Hostgroup', 'Servicegroup', 'Service catalog']" ng-change="ctrl.switchValue('objecttype',ctrl.target.objecttype)"></select>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.APDEX">
+      <label class="gf-form-label query-keyword">Satisfied Zone:</label>
+      <input type="number" step="0.1" class="gf-form-input" ng-model="ctrl.target.satisfiedzone" ng-change="ctrl.switchValue('satisfiedzone',ctrl.target.satisfiedzone)"></input>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.STATUS && ctrl.target.objecttype != 'Service catalog'">
+        <gf-form-switch class="gf-form" label="Extended State:" label-class="gf-form-label query-keyword" checked="ctrl.target.extended_state" on-change="ctrl.switchValue('extended_state',ctrl.target.extended_state)"></gf-form-switch>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.AVAIL">
+        <gf-form-switch class="gf-form" label="Downtime as OK:" label-class="gf-form-label query-keyword" checked="ctrl.target.downtimeasok" on-change="ctrl.switchValue('downtimeasok',ctrl.target.downtimeasok)"></gf-form-switch>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode == editorMode.CP || ctrl.target.mode == editorMode.AVAIL">
+      <label class="gf-form-label query-keyword">Timecut:</label>
+      <metric-segment-model property="ctrl.target.timecut" get-options="ctrl.getTimecut()" on-change="ctrl.switchValue('timecut',ctrl.target.timecut)"></metric-segment-model->
+    </div>
+
+     <div class="gf-form" ng-show="ctrl.target.mode == editorMode.CP">
+      <label class="gf-form-label query-keyword">Group By:</label>
+      <select class="gf-form-input" ng-model="ctrl.target.groupby" ng-options="f as f for f in ['none', 'avg', 'max','min', 'sum']" ng-change="ctrl.switchValue('groupby',ctrl.target.groupby)"></select>
+    </div>
+
+    <div class="gf-form" ng-show="ctrl.target.mode != editorMode.APDEX">
+      <label class="gf-form-label query-keyword">Format As:</label>
+        <select class="gf-form-input gf-size-auto" ng-model="ctrl.target.resultformat" ng-options="f.value as f.text for f in ctrl.resultFormats" ng-change="ctrl.switchValue('resultformat',ctrl.target.resultformat)"></select>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+
+
+  </div>
+
+
+  <div class="gf-form-inline">
+      <div class="gf-form" ng-show="ctrl.target.mode != editorMode.SYSTEM">
+          <div class="gf-form" ng-show="ctrl.target.objecttype == 'Host'">
+              <label class="gf-form-label query-keyword">Host:</label>
+              <metric-segment-model property="ctrl.target.host" get-options="ctrl.getHost()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+          </div>
+          <div class="gf-form" ng-show="ctrl.target.objecttype == 'Hostgroup'">
+              <label class="gf-form-label query-keyword">Host group:</label>
+              <metric-segment-model property="ctrl.target.hostgroup" get-options="ctrl.getHostGroup()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+              <div class="gf-form" ng-show="ctrl.target.mode == editorMode.CP">
+                  <label class="gf-form-label query-keyword">Host:</label>
+                  <metric-segment-model property="ctrl.target.host" get-options="ctrl.getHost()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+                  <label class="gf-form-label query-keyword">Service:</label>
+                  <metric-segment-model property="ctrl.target.service" get-options="ctrl.getService()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+              </div>
+          </div>
+          <div class="gf-form" ng-show="ctrl.target.objecttype == 'Service'">
+              <label class="gf-form-label query-keyword">Host:</label>
+              <metric-segment-model property="ctrl.target.host" get-options="ctrl.getHost()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+              <label class="gf-form-label query-keyword">Service:</label>
+              <metric-segment-model property="ctrl.target.service" get-options="ctrl.getService()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+          </div>
+          <div class="gf-form" ng-show="ctrl.target.objecttype == 'Servicegroup'">
+              <label class="gf-form-label query-keyword">Service group:</label>
+              <metric-segment-model property="ctrl.target.servicegroup" get-options="ctrl.getServiceGroup()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+              <div class="gf-form" ng-show="ctrl.target.mode == editorMode.CP">
+                  <label class="gf-form-label query-keyword">Host:</label>
+                  <metric-segment-model property="ctrl.target.host" get-options="ctrl.getHost()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+                  <label class="gf-form-label query-keyword">Service:</label>
+                  <metric-segment-model property="ctrl.target.service" get-options="ctrl.getService()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+              </div>
+          </div>
+          <div class="gf-form" ng-show="ctrl.target.objecttype == 'Service catalog'">
+              <label class="gf-form-label query-keyword">Catalog:</label>
+              <metric-segment-model property="ctrl.target.serviceCatalog" get-options="ctrl.getServiceCatalog()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+          </div>
+      </div>
+      <div class="gf-form">
+          <label class="gf-form-label query-keyword">Metric:</label>
+          <metric-segment-model property="ctrl.target.metric" get-options="ctrl.getMetric()" on-change="ctrl.onChangeInternal()"></metric-segment-model>
+      </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+
+</query-editor-row>

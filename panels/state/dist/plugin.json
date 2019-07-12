@@ -1,0 +1,27 @@
+{
+  "type": "panel",
+  "name": "OpMon State",
+  "id": "state",
+
+  "info": {
+    "description": "OpMon datasource",
+    "author": {
+      "name": "OpServices SA",
+      "email": "contact@opservices.com",
+      "url": "http://www.opservices.com"
+    },
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+    ],
+    "version": "1.0.0",
+    "updated": "2018-06-28"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "4.5.x",
+    "plugins": [ ]
+  }
+}

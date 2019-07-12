@@ -1,0 +1,13 @@
+.generic-datasource-query-row .query-keyword {
+  width: 75px;
+}
+
+@media (min-width: 544px)
+.sidemenu-open .sidemenu {
+    background: #f7f8fa !important;
+        position: static;
+            height: auto;
+                box-shadow: 5px 0 10px -5px #52545c;
+                    position: relative;
+                        z-index: 1025;
+                        }

@@ -1,0 +1,31 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">Status options</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">Font size</label>
+			<div class="gf-form-wrapper max-width-10">
+				<input
+					type="text"
+					class="input-medium gf-form-input"
+					ng-model="ctrl.panel.statusSettings.fontSize"
+					ng-change="ctrl.render()"
+				/>
+			</div>
+		</div>
+	</div>	
+
+	<div class="section gf-form-group">
+		<h5 class="section-heading">Element options</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">Font size</label>
+			<div class="gf-form-wrapper max-width-10">
+				<input
+					type="text"
+					class="input-medium gf-form-input"
+					ng-model="ctrl.panel.elementSettings.fontSize"
+					ng-change="ctrl.render()"
+				/>
+			</div>
+		</div>
+	</div>
+</div>

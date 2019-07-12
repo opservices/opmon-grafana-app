@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["Apedex"],"mappings":";;;;;;;;AAASA,Y,gBAAAA,M;;;2BAIPA,M","file":"module.js","sourcesContent":["import { Apedex } from './apedex_ctrl';\nimport './css/display-status-panel.css!'\n\nexport {\n  Apedex as PanelCtrl\n};\n"]}
