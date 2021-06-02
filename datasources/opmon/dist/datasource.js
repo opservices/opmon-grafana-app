@@ -57,6 +57,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
           this.DEFAULT_RESULT_FORMAT = 'time_series';
           this.DEFAULT_OBJECT_TYPE = 'Host';
           this.DEFAULT_EXTENDED_STATE = false;
+          this.DEFAULT_HARD_STATE = true;
           this.DEFAULT_HOSTGROUP = '- select hostgroup -';
           this.DEFAULT_SERVICEGROUP = '- select servicegroup -';
           this.DEFAULT_SERVICECATALOG = '- select service catalog -';
@@ -422,6 +423,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
                 resultformat: _this.templateSrv.replace(_this.templateSrv.replace(target.resultformat, options.scopedVars)),
                 objecttype: _this.templateSrv.replace(_this.templateSrv.replace(target.objecttype, options.scopedVars)),
                 extended_state: target.extended_state,
+                hardState: target.hardState,
                 mode: target.mode,
                 //fill: this.templateSrv.replace(this.templateSrv.replace(target.fill, options.scopedVars)),
                 //factor: this.templateSrv.replace(this.templateSrv.replace(target.factor, options.scopedVars)),
