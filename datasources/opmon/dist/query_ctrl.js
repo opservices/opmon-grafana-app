@@ -82,6 +82,7 @@ System.register(['app/plugins/sdk', './css/query-editor.css!', './constants'], f
           //this.target.resultFormat = this.target.resultFormat      || this.datasource.DEFAULT_RESULT_FORMAT;
           _this.target.objecttype = _this.$scope.$root.objecttype ? _this.$scope.$root.objecttype : _this.target.objecttype || _this.datasource.DEFAULT_OBJECT_TYPE;
           _this.target.extended_state = _this.$scope.$root.extended_state ? _this.$scope.$root.extended_state : _this.target.extended_state || _this.datasource.DEFAULT_EXTENDED_STATE;
+          _this.target.hardState = _this.$scope.$root.hardState ? _this.$scope.$root.hardState : _this.target.hardState || _this.datasource.DEFAULT_HARD_STATE;
           //this.target.fill      = this.target.fill      || 'fill';
           _this.target.resultformat = _this.$scope.$root.resultformat ? _this.$scope.$root.resultformat : _this.target.resultformat || _this.datasource.DEFAULT_RESULT_FORMAT;
 
