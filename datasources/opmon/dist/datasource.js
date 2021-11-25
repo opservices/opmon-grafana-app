@@ -41,7 +41,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
           _classCallCheck(this, OpMonDatasource);
 
           this.type = instanceSettings.type;
-          this.url = instanceSettings.url + '/opmon/seagull/www/index.php/wsconnector/action/datasource?' + 'mod=OPVIEW' + '&' + 'shareduid=W1ksbu9/9O95NGvyrgbVYe6yEE2LcgQdivS5PHhiVe0=' + '&' + 'q=';
+          this.url = window.location.origin + '/opmon/seagull/www/index.php/wsconnector/action/datasource?' + 'mod=OPVIEW' + '&' + 'shareduid=W1ksbu9/9O95NGvyrgbVYe6yEE2LcgQdivS5PHhiVe0=' + '&' + 'q=';
           this.name = instanceSettings.name;
           this.q = $q;
           this.backendSrv = backendSrv;
@@ -57,6 +57,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
           this.DEFAULT_RESULT_FORMAT = 'time_series';
           this.DEFAULT_OBJECT_TYPE = 'Host';
           this.DEFAULT_EXTENDED_STATE = false;
+          this.DEFAULT_HARD_STATE = true;
           this.DEFAULT_HOSTGROUP = '- select hostgroup -';
           this.DEFAULT_SERVICEGROUP = '- select servicegroup -';
           this.DEFAULT_SERVICECATALOG = '- select service catalog -';
@@ -385,13 +386,14 @@ System.register(['lodash', './constants'], function (_export, _context) {
 
             //remove placeholder targets
 
-            options.targets = _.filter(options.targets, function (target) {
-              if (target.mode == c.MODE_CP || target.mode == c.MODE_AVAIL) {
-                return target.host !== _this.DEFAULT_HOST;
-              } else {
-                return true;
-              }
-            });
+            // options.targets = _.filter(options.targets, target => {
+            //   if (target.mode == c.MODE_CP || target.mode == c.MODE_AVAIL) {
+            //     return target.host !== this.DEFAULT_HOST;
+            //   } else {
+            //     return true;
+            //   }
+            // });
+
 
             options.targets = _.filter(options.targets, function (target) {
               if (target.mode == c.MODE_CP) {
@@ -422,6 +424,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
                 resultformat: _this.templateSrv.replace(_this.templateSrv.replace(target.resultformat, options.scopedVars)),
                 objecttype: _this.templateSrv.replace(_this.templateSrv.replace(target.objecttype, options.scopedVars)),
                 extended_state: target.extended_state,
+                hardState: target.hardState,
                 mode: target.mode,
                 //fill: this.templateSrv.replace(this.templateSrv.replace(target.fill, options.scopedVars)),
                 //factor: this.templateSrv.replace(this.templateSrv.replace(target.factor, options.scopedVars)),
