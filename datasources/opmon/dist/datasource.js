@@ -41,7 +41,7 @@ System.register(['lodash', './constants'], function (_export, _context) {
           _classCallCheck(this, OpMonDatasource);
 
           this.type = instanceSettings.type;
-          this.url = instanceSettings.url + '/opmon/seagull/www/index.php/wsconnector/action/datasource?' + 'mod=OPVIEW' + '&' + 'shareduid=W1ksbu9/9O95NGvyrgbVYe6yEE2LcgQdivS5PHhiVe0=' + '&' + 'q=';
+          this.url = window.location.origin + '/opmon/seagull/www/index.php/wsconnector/action/datasource?' + 'mod=OPVIEW' + '&' + 'shareduid=W1ksbu9/9O95NGvyrgbVYe6yEE2LcgQdivS5PHhiVe0=' + '&' + 'q=';
           this.name = instanceSettings.name;
           this.q = $q;
           this.backendSrv = backendSrv;
@@ -386,13 +386,14 @@ System.register(['lodash', './constants'], function (_export, _context) {
 
             //remove placeholder targets
 
-            options.targets = _.filter(options.targets, function (target) {
-              if (target.mode == c.MODE_CP || target.mode == c.MODE_AVAIL) {
-                return target.host !== _this.DEFAULT_HOST;
-              } else {
-                return true;
-              }
-            });
+            // options.targets = _.filter(options.targets, target => {
+            //   if (target.mode == c.MODE_CP || target.mode == c.MODE_AVAIL) {
+            //     return target.host !== this.DEFAULT_HOST;
+            //   } else {
+            //     return true;
+            //   }
+            // });
+
 
             options.targets = _.filter(options.targets, function (target) {
               if (target.mode == c.MODE_CP) {
